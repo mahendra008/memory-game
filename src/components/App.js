@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css';
+import Completed from './Completed/Completed';
 
 //-- components
 import SingleCard from './SingleCard/SingleCard'
@@ -19,6 +20,7 @@ function App() {
   const [ choiceOne, setChoiceOne ] = useState(null);
   const [ choiceTwo, setChoiceTwo ] = useState(null);
   const [disabled, setDisabled ] = useState(false);
+  const [ completed, setCompleted ] = useState(false)
 
   const shuffleCards = () => {
     const shuffleCards = [...cardImages, ...cardImages]
@@ -39,6 +41,28 @@ function App() {
     setTurns(prevTurn => prevTurn + 1);
     setDisabled(false);
   }
+
+  useEffect(() => {
+    let result = true;
+    cards.forEach((card) =>{
+      if(!card.matched){
+        result = false;
+        return false;
+      }
+    })
+    if(result){
+
+      setTimeout(() => {
+        setCompleted(true);
+      }, 1100);
+
+      setTimeout(() => {
+        setCompleted(false);
+        shuffleCards();
+      }, 5000)
+    }
+
+  }, [cards])
 
   useEffect(() => {
     if(choiceOne && choiceTwo){
@@ -68,6 +92,7 @@ function App() {
 
   return (
     <div className="App">
+      {completed && <Completed />}
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
         <div className='card-grid'>

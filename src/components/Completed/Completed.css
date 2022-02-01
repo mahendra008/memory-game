@@ -1,0 +1,21 @@
+.completed{    
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    background: rgba(167, 0, 86, 0.8);
+}
+
+.msg{
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    align-items: center;
+    font-size: 4em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
