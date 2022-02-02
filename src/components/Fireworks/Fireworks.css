@@ -1,0 +1,17 @@
+button{
+    background: none;
+    border:  2px solid #FFF;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #FFF;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 0.2em;
+    background: #C23866;
+    transition: ease-in all 0.2s;
+  }
+  
+  button:hover{
+    font-size: 0.3em;
+    transition: ease-in all 0.2s;
+  }

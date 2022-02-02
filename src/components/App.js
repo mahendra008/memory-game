@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css';
-import Completed from './Completed/Completed';
+import Fireworks  from './Fireworks/Fireworks';
 
 //-- components
 import SingleCard from './SingleCard/SingleCard'
@@ -16,11 +16,11 @@ const cardImages = [
 
 function App() {
   const [ cards, setCards ] = useState([]);
-  const [turns, setTurns ] = useState(0);
+  const [ turns, setTurns ] = useState(0);
   const [ choiceOne, setChoiceOne ] = useState(null);
   const [ choiceTwo, setChoiceTwo ] = useState(null);
-  const [disabled, setDisabled ] = useState(false);
-  const [ completed, setCompleted ] = useState(false)
+  const [ disabled, setDisabled ] = useState(false);
+  const [ fireworks, setFireworks ] = useState(false)
 
   const shuffleCards = () => {
     const shuffleCards = [...cardImages, ...cardImages]
@@ -29,6 +29,7 @@ function App() {
 
     setCards(shuffleCards);
     setTurns(0);
+    setFireworks(false);
   }
 
   const handleChoice = (card) => {
@@ -51,15 +52,7 @@ function App() {
       }
     })
     if(result){
-
-      setTimeout(() => {
-        setCompleted(true);
-      }, 1100);
-
-      setTimeout(() => {
-        setCompleted(false);
-        shuffleCards();
-      }, 5000)
+      setFireworks(true);
     }
 
   }, [cards])
@@ -92,9 +85,7 @@ function App() {
 
   return (
     <div className="App">
-      {completed && <Completed />}
-      <h1>Magic Match</h1>
-      <button onClick={shuffleCards}>New Game</button>
+      {fireworks && <Fireworks shuffleCards={shuffleCards} />}
         <div className='card-grid'>
           {cards.map(card => (
               <SingleCard 
@@ -106,7 +97,6 @@ function App() {
               />
           ))}
       </div>
-      <h2>{`Turns: ${turns}`}</h2>
     </div>
   );
 }
